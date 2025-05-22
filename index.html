@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DRZ YAZILIM | Dijital & Yazılım Çözümleri</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/8/80/Telegram_logo.svg" />
+  <style>
+    :root { --primary:#00ff96; --dark:#0b0e11; --light:#eff6ff; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; background:var(--dark); color:#fff; }
+    h1,h2 { font-family:'VT323',monospace; letter-spacing:1px; }
+    .gradient-bg{background:linear-gradient(130deg,#0b0e11 0%,#132018 40%,#0b0e11 80%);background-size:200% 200%;animation:gradient 18s ease infinite;}
+    @keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .fade{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.33,1,.68,1);} .show{opacity:1;transform:none;}
+    .tilt:hover{transform:perspective(700px) rotateX(8deg) rotateY(4deg) scale(1.05);} .tilt{transition:transform .4s ease;}
+    @keyframes blink{50%{opacity:.4}} .blink{animation:blink 1.2s infinite;}
+    /* Matrix Rain */
+    #matrix{position:absolute;top:0;left:0;width:100%;height:100%;opacity:.18;pointer-events:none;z-index:1;}
+    /* Glitch */
+    .glitch{position:relative;} .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;width:100%;opacity:.8;clip:rect(0,900px,0,0);} .glitch::before{animation:glitchTop 3s infinite linear alternate-reverse;color:#00ff96;} .glitch::after{animation:glitchBot 2.5s infinite linear alternate-reverse;color:#0ff;}
+    @keyframes glitchTop{0%{clip:rect(0,900px,0,0);}5%{clip:rect(0,900px,90px,0);transform:translate(-3px,-3px);}10%,100%{clip:rect(0,900px,0,0);}}
+    @keyframes glitchBot{0%{clip:rect(0,900px,0,0);}5%{clip:rect(70px,900px,140px,0);transform:translate(3px,3px);}10%,100%{clip:rect(0,900px,0,0);}}
+    @keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.animate-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 25s linear infinite;
+}
+
+  </style>
+</head>
+<body class="relative overflow-x-hidden">
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md shadow-lg">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+      <a href="#hero" class="text-3xl font-bold text-emerald-400 tracking-wide">DRZ&nbsp;YAZILIM</a>
+<div class="hidden md:flex gap-8 text-sm uppercase">
+  <a href="#services" class="hover:text-emerald-400">Hizmetler</a>
+  <a href="#about" class="hover:text-emerald-400">Hakkımızda</a>
+  <a href="#contact" class="hover:text-emerald-400">İletişim</a>
+</div>
+    </div>
+  </nav>
+
+  <!-- SCROLLING SERVICE BANNER -->
+<div class="w-full bg-[#0e1114] border-b border-emerald-500 overflow-hidden whitespace-nowrap py-3 text-emerald-300 font-semibold text-sm tracking-wide fixed top-[60px] z-40">
+  <div class="inline-block animate-scroll px-6">
+    <span class="inline-flex items-center gap-2 mr-8">💯 HİZMETLERİMİZ 💯</span>
+    <span class="inline-flex items-center gap-2 mr-8">💻 Web Tasarım</span>
+    <span class="inline-flex items-center gap-2 mr-8">🤖 Telegram Bot</span>
+    <span class="inline-flex items-center gap-2 mr-8">📱 Mobil Uygulama</span>
+    <span class="inline-flex items-center gap-2 mr-8">📸 Instagram</span>
+    <span class="inline-flex items-center gap-2 mr-8">📘 Facebook</span>
+    <span class="inline-flex items-center gap-2 mr-8">🐦 Twitter (X)</span>
+    <span class="inline-flex items-center gap-2 mr-8">🚀 SEO & Reklam</span>
+  </div>
+</div>
+
+
+  <!-- HERO -->
+  <header id="hero" class="relative h-screen flex items-center justify-center gradient-bg">
+    <!-- Matrix Canvas -->
+    <canvas id="matrix"></canvas>
+    <!-- Overlay coding image (NOT food) -->
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556155092-8707de31f9c4?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10"></div>
+    <!-- Hero content -->
+    <div class="relative z-10 text-center px-6 fade">
+      <h1 class="glitch text-7xl md:text-9xl font-extrabold mb-6 drop-shadow-[0_5px_25px_rgba(0,255,150,.8)]" data-text="DRZ YAZILIM">DRZ YAZILIM</h1>
+      <p class="text-2xl md:text-4xl font-semibold text-emerald-300 mb-10 tracking-wide">Profesyonel Yazılım Hizmetleri</p>
+      <a href="#services" class="blink inline-block bg-emerald-500 hover:bg-emerald-600 px-12 py-4 rounded-full text-lg shadow-lg">Hizmetlere Göz At</a>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-32 px-6 bg-[#111618]">
+    <h2 class="text-5xl font-extrabold text-center mb-20 fade">Hizmetlerimiz</h2>
+    <div class="grid gap-14 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <!-- Cards -->
+      <button data-target="web" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">💻 Web Tasarım</h3>
+        <p class="text-gray-400 leading-relaxed">Kurumsal kimliğinize uygun modern, SEO odaklı ve cihaz uyumlu web siteleri.</p>
+      </button>
+      <button data-target="bot" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">🤖 Telegram Bot</h3>
+        <p class="text-gray-400 leading-relaxed">Mikrosaniyelik yanıt sürelerine sahip akıllı ve özelleştirilebilir bot çözümleri.</p>
+      </button>
+      <button data-target="app" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">📱 Mobil / Masaüstü</h3>
+        <p class="text-gray-400 leading-relaxed">Flutter, React Native ve Electron ile çok platformlu uygulamalar.</p>
+      </button>
+      <button data-target="social" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">📣 Sosyal Medya</h3>
+        <p class="text-gray-400 leading-relaxed">Facebook, Instagram ve X için organik & reklam destekli büyüme.</p>
+      </button>
+      <button data-target="seo" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">📈 SEO & Analitik</h3>
+        <p class="text-gray-400 leading-relaxed">Lighthouse 100/100 hedefli, veri odaklı SEO çözümleri.</p>
+      </button>
+      <button data-target="ads" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">🚀 Dijital Reklam</h3>
+        <p class="text-gray-400 leading-relaxed">Google, Meta, TikTok & LinkedIn Ads ile ROI odaklı kampanyalar.</p>
+      </button>
+      <button data-target="ozel" class="service-btn group bg-[#1a1f24] p-12 rounded-3xl shadow-xl hover:shadow-emerald-500/60 tilt fade">
+        <h3 class="text-3xl font-semibold mb-4">💻 Özel Yazılım Hizmetleri</h3>
+        <p class="text-gray-400 leading-relaxed">ONLINE SATIŞ HİZMETLERİ,BİLGİ İŞLEM DANIŞMANLIĞI,E-FATURA İŞLEMLERİ,PROJE YÖNETİMİ GİBİ ÖZEL HİZMETLERİMİZ.</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- HAKKIMIZDA -->
+<section id="about" class="py-28 px-6 bg-[#111618] text-center fade">
+  <h2 class="text-4xl font-extrabold mb-10">Hakkımızda</h2>
+  <div class="max-w-4xl mx-auto text-gray-400 text-lg leading-relaxed">
+    <p>DRZ Yazılım; modern, güvenilir ve performans odaklı dijital çözümler üretmek için kurulmuş bağımsız bir yazılım firmasıdır.</p>
+    <p class="mt-4">Telegram bot sistemlerinden, web tabanlı otomasyonlara ve mobil/masaüstü uygulamalara kadar geniş bir yelpazede profesyonel çözümler sunuyoruz. Her projemizde hız, sadelik ve kullanıcı memnuniyetini ön planda tutuyoruz.</p>
+    <p class="mt-4">Sadece kod yazmıyor, işletmenizin dijital başarısı için strateji geliştiriyor ve sizinle birlikte büyüyoruz.</p>
+    <p class="mt-6 text-emerald-400 font-semibold">Bize 7/24 Telegram üzerinden ulaşabilirsiniz.</p>
+  </div>
+</section>
+
+
+
+  <!-- DETAILS -->
+  <section id="details" class="pb-36 px-6 bg-[#0d1013]">
+    <div class="max-w-5xl mx-auto space-y-12 text-gray-300">
+      <!-- detail articles, unchanged from last version (web,bot,app,social,seo,ads) -->
+      <!-- WEB -->
+      <article id="detail-web" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">Profesyonel Web Tasarım</h3>
+        <p class="leading-relaxed mb-6">Next.js ve Astro ile 100/100 Lighthouse skorlu, WCAG uyumlu siteler geliştiriyoruz.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>🔗 E-Ticaret & ödeme (Stripe/PayTR)</li>
+          <li>⚙️ Headless CMS (Strapi, Sanity)</li>
+          <li>🌐 Çok-dilli uluslararası SEO</li>
+          <li>🔒 SSL, WAF & otomatik yedekleme</li>
+        </ul>
+      </article>
+      <!-- BOT -->
+      <article id="detail-bot" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">Telegram Bot Geliştirme</h3>
+        <p class="leading-relaxed mb-6">Telethon + UVLoop optimizasyonu ile ortalama 35 ms tepki süreleri.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>💯 Gerçek zamanlı telegram botları</li>
+          <li>💳 Abonelik & ödeme (Crypto, Stripe)</li>
+          <li>🗂 Modüler mimari – 20+ mikro-servis</li>
+          <li>📊 Prometheus + Grafana canlı izleme</li>
+        </ul>
+      </article>
+      <!-- APP -->
+      <article id="detail-app" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">Mobil & Masaüstü Uygulamalar</h3>
+        <p class="leading-relaxed mb-6">Flutter & React Native ile tek kod tabanından iOS & Android, Electron ile masaüstü.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>📲 Gerçek zamanlı bildirim (Firebase)</li>
+          <li>⚡ Offline-first mimari</li>
+          <li>🛠 CI/CD (GitHub Actions + Fastlane)</li>
+          <li>📈 Crashlytics + Analitik</li>
+        </ul>
+      </article>
+      <!-- SOCIAL -->
+      <article id="detail-social" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">Sosyal Medya Yönetimi</h3>
+        <p class="leading-relaxed mb-6">Facebook, Instagram & X için içerik, reklam ve topluluk yönetimi.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>📅 İçerik takvimi & kreatif tasarım</li>
+          <li>🤝 Influencer iş birlikleri</li>
+          <li>📊 Raporlama & sosyal dinleme</li>
+          <li>🎯 Persona & hedef kitle analizi</li>
+        </ul>
+      </article>
+      <!-- SEO -->
+      <article id="detail-seo" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">SEO & Analitik</h3>
+        <p class="leading-relaxed mb-6">Core Web Vitals optimizasyonu, GA4 & Looker Studio raporları.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>⚡ Site hızı (Next.js ISR, CDN)</li>
+          <li>🔗 Backlink & içerik stratejisi</li>
+          <li>📈 Dönüşüm hunisi & A/B test</li>
+          <li>🧠 AI destekli içerik üretimi</li>
+        </ul>
+      </article>
+      <!-- ADS -->
+      <article id="detail-ads" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">Dijital Reklam & Growth</h3>
+        <p class="leading-relaxed mb-6">Google, Meta, TikTok & LinkedIn platformlarında yüksek ROI.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>🔍 Arama + Görüntülü kampanyalar</li>
+          <li>📧 Yeniden pazarlama & automations</li>
+          <li>⚙️ Bütçe optimizasyonunda AI</li>
+          <li>📄 Haftalık performans raporu</li>
+        </ul>
+      </article>
+      <!-- ozelhızmet -->
+      <article id="detail-ozel" class="hidden bg-[#171c22] p-10 rounded-2xl shadow-lg">
+        <h3 class="text-4xl font-bold text-emerald-400 mb-6">ÖZEL HİZMETLER</h3>
+        <p class="leading-relaxed mb-6">HAYALİNİZDEKİ PROJEYİ İLETİN, BİZ GERÇEĞE DÖNÜŞTÜRELİM.</p>
+        <ul class="list-disc ml-8 space-y-2">
+          <li>💻 PROJE YÖNETİMİ</li>
+          <li>📧 E-FATURA İŞLEMLERİ</li>
+          <li>❔ BİLGİ İŞLEM DANIŞMANLIĞI</li>
+          <li>🔗 ONLINE SATIŞ HİZMETLERİ</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-28 px-6 bg-[#0d1013] text-center fade">
+    <h2 class="text-4xl font-extrabold mb-6">İletişime Geçin</h2>
+    <p class="text-gray-400 mb-10 max-w-xl mx-auto">Projeniz için teklif alın veya aklınızdaki soruları sorun. 7/24 Telegram’dayız!</p>
+    <a href="https://t.me/drzyazilim" target="_blank" class="blink inline-flex items-center bg-emerald-500 hover:bg-emerald-600 px-12 py-5 rounded-full text-lg shadow-lg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" class="w-7 h-7 mr-3" alt="Telegram"/>
+      @drzyazilim
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#111618] text-center py-8 text-gray-500 text-sm">© 2025 DRZ Yazılım — Tüm Hakları Saklıdır</footer>
+
+  <!-- Scripts -->
+  <script>
+    const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('show')), {threshold:.2});
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    const btns = document.querySelectorAll('.service-btn');
+    const details = document.querySelectorAll('#details article');
+    btns.forEach(btn => btn.addEventListener('click', () => {
+      const target = btn.dataset.target;
+      details.forEach(sec => sec.id === `detail-${target}` ? sec.classList.toggle('hidden') : sec.classList.add('hidden'));
+      document.querySelector('#details').scrollIntoView({behavior:'smooth'});
+    }));
+
+    // Matrix animation
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    let width, height, cols, fontSize = 16;
+    const chars = '01<>={}[]$&|!*+-%';
+    let drops = [];
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      cols = Math.floor(width / fontSize) + 1;
+      drops = Array(cols).fill(0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    function draw() {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0,0,width,height);
+      ctx.fillStyle = '#00ff96';
+      ctx.font = fontSize + 'px monospace';
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random()*chars.length)];
+        ctx.fillText(text, i*fontSize, y);
+        if (y > height && Math.random() > 0.975) drops[i] = 0;
+        drops[i] = y + fontSize;
+      });
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+
+  <!-- Sabit Telegram Butonu -->
+  <a href="https://t.me/drzyazilim" target="_blank" aria-label="Telegram ile iletişim"
+     class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 flex items-center justify-center shadow-lg animate-pulse">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="w-7 h-7">
+  </a>
+</body>
+</html>
