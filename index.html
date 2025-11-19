@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>DRZ Yazılım – Yapay Zekâ, Bot ve Profesyonel Yazılım Çözümleri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DRZ Yazılım; yapay zekâ destekli botlar, web ve mobil geliştirme, veri bilimi, gömülü yazılım, veritabanı, ağ & güvenlik ve sosyal medya çözümleri sunan profesyonel yazılım ekibidir." />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #050816;
+      --layer: rgba(15,23,42,0.9);
+      --accent: #6366f1;
+      --accent2: #06b6d4;
+      --accent3: #facc15;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border-soft: 1px solid rgba(148,163,184,0.35);
+      --radius: 18px;
+      --shadow-soft: 0 20px 60px rgba(0,0,0,0.8);
+      --max-width: 1140px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      color: var(--text);
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== ARKA PLAN ANİMASYONU - DRZ YAZILIM YAZILARI ===== */
+    .bg-anim {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.08;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-line {
+      position: absolute;
+      white-space: nowrap;
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #64748b;
+      filter: blur(1px);
+      animation: bgMove 40s linear infinite;
+    }
+
+    .bg-line:nth-child(1) { top: 15%; left: -60%; animation-duration: 46s; }
+    .bg-line:nth-child(2) { top: 45%; left: -40%; animation-duration: 38s; }
+    .bg-line:nth-child(3) { top: 75%; left: -70%; animation-duration: 52s; }
+
+    @keyframes bgMove {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(80%); }
+    }
+
+    /* ===== SPLASH ===== */
+    .splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at top, #111827 0, #020617 65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #e5e7eb;
+      animation: splashFade 0.7s ease-out 2.6s forwards;
+    }
+
+    .splash-logo {
+      font-size: clamp(34px, 6vw, 44px);
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .splash-logo span {
+      background: linear-gradient(to right, #6366f1, #06b6d4, #facc15);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .splash-sub {
+      font-size: 14px;
+      max-width: 420px;
+      margin-bottom: 22px;
+      color: #cbd5f5;
+    }
+
+    .splash-loader {
+      width: 220px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.7);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .splash-loader-fill {
+      width: 60%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(to right, #22c55e, #06b6d4, #6366f1);
+      animation: splashBar 2.2s ease-in-out infinite;
+    }
+
+    .splash-text {
+      margin-top: 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    @keyframes splashBar {
+      0% { transform: translateX(-80%); }
+      50% { transform: translateX(10%); }
+      100% { transform: translateX(120%); }
+    }
+
+    @keyframes splashFade {
+      to { opacity: 0; visibility: hidden; pointer-events: none; }
+    }
+
+    /* ===== ÜST KAYAN ŞERİT ===== */
+    .ticker {
+      position: fixed;
+      top: 0;
+      left: 0; right: 0;
+      height: 30px;
+      background: rgba(15,23,42,0.98);
+      border-bottom: 1px solid rgba(30,64,175,0.8);
+      overflow: hidden;
+      z-index: 40;
+    }
+
+    .ticker-inner {
+      display: flex;
+      align-items: center;
+      height: 30px;
+      white-space: nowrap;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      animation: tickerMove 26s linear infinite;
+    }
+
+    .ticker-item {
+      margin-right: 70px;
+      opacity: 0.85;
+    }
+
+    @keyframes tickerMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SAĞ SABİT TELEGRAM ===== */
+    .contact-fixed {
+      position: fixed;
+      right: 18px;
+      bottom: 70px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .floating-chip {
+      background: rgba(15,23,42,0.95);
+      border-radius: 999px;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(148,163,184,0.65);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.9);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .floating-chip span.icon {
+      width: 22px; height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      background: radial-gradient(circle at top, #22c55e, #0ea5e9);
+    }
+
+    .floating-chip strong { font-weight: 600; }
+    .floating-chip small { font-size: 11px; color: var(--muted); }
+
+    .floating-chip:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.98);
+      border-color: #facc15;
+    }
+
+    /* ===== ANA YAPI ===== */
+    .page {
+      padding-top: 46px; /* ticker boşluğu */
+    }
+
+    .shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+    }
+
+    header.site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-name {
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+    }
+
+    .brand-name span {
+      background: linear-gradient(to right, #6366f1, #06b6d4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav.site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    nav.site-nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    nav.site-nav a:hover {
+      border-color: rgba(148,163,184,0.8);
+      background: rgba(15,23,42,0.94);
+      color: #e5e7eb;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 80vh;
+      display: grid;
+      grid-template-columns: minmax(0, 3.3fr) minmax(0, 2.2fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .hero-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 5vw, 44px);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #6366f1, #06b6d4, #facc15);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #6366f1, #06b6d4);
+      color: #f9fafb;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px) scale(1.01); }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.94);
+      color: var(--muted);
+      border: 1px solid rgba(148,163,184,0.7);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,1);
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-timeline {
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(99,102,241,0.35), transparent 60%),
+                  radial-gradient(circle at bottom right, rgba(6,182,212,0.35), transparent 70%),
+                  var(--layer);
+      border-radius: 26px;
+      padding: 20px 16px 16px;
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 18px;
+      bottom: 18px;
+      width: 2px;
+      background: linear-gradient(to bottom, #6366f1, #06b6d4, #22c55e);
+      opacity: 0.7;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 14px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 4px; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #0f172a;
+      border: 2px solid #e5e7eb;
+      box-shadow: 0 0 0 6px rgba(148,163,184,0.3);
+    }
+
+    .timeline-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .timeline-text {
+      font-size: 12px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    /* ===== BÖLÜM GENEL ===== */
+    section {
+      padding: 40px 0;
+      border-top: 1px solid rgba(15,23,42,0.9);
+    }
+
+    .section-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .section-text {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    /* ===== FEATURE ROW ===== */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .feature-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 70px minmax(0,1.4fr) minmax(0,1.3fr);
+      gap: 14px;
+      padding: 14px 14px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(15,23,42,0.9));
+      border: 1px solid rgba(30,64,175,0.6);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.85);
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .feature-row::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at top, rgba(99,102,241,0.15), transparent 60%),
+        radial-gradient(circle at bottom, rgba(6,182,212,0.18), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .feature-row:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.95);
+      border-color: #facc15;
+      background: linear-gradient(135deg, rgba(15,23,42,0.96), rgba(8,47,73,0.98));
+    }
+
+    .feature-row:hover::after { opacity: 1; }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top, #6366f1, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #e5e7eb;
+      z-index: 1;
+    }
+
+    .feature-main {
+      z-index: 1;
+    }
+
+    .feature-main-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature-main-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .feature-side {
+      z-index: 1;
+      font-size: 12px;
+      color: #e5e7eb;
+      opacity: 0.9;
+    }
+
+    .feature-side ul {
+      list-style: disc;
+      padding-left: 16px;
+      margin-top: 4px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 11px;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .btn-mini {
+      margin-top: 8px;
+      padding: 6px 10px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+
+    /* ===== YAZILIM DALLARI – HORIZONTAL ŞERİT ===== */
+    .branch-strip {
+      margin-top: 18px;
+      padding-bottom: 4px;
+      overflow-x: auto;
+      display: flex;
+      gap: 14px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .branch-card {
+      min-width: 260px;
+      scroll-snap-align: start;
+      background: rgba(15,23,42,0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 12px 12px 14px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.85);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      font-size: 12px;
+    }
+
+    .branch-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.95);
+      border-color: #22c55e;
+    }
+
+    .branch-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .branch-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .branch-card ul {
+      list-style: disc;
+      padding-left: 16px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ===== SÜREÇ ===== */
+    .process-line {
+      margin-top: 16px;
+      border-radius: 20px;
+      background: rgba(15,23,42,0.96);
+      border: var(--border-soft);
+      padding: 14px 16px 10px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+    }
+
+    .process-step {
+      position: relative;
+      padding-left: 80px;
+      margin-bottom: 10px;
+    }
+
+    .process-step:last-child { margin-bottom: 4px; }
+
+    .process-step-number {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top, #6366f1, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .process-step-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .process-step-text {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ===== İLETİŞİM ===== */
+    .contact-card {
+      margin-top: 16px;
+      border-radius: 20px;
+      background: rgba(15,23,42,0.95);
+      border: var(--border-soft);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 13px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.9);
+      font-size: 12px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(15,23,42,0.95);
+      padding-top: 12px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 80;
+    }
+
+    .modal-backdrop.active { display: flex; }
+
+    .modal {
+      max-width: 720px;
+      width: 92%;
+      background: #020617;
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.95);
+      font-size: 13px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .modal-body p {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .modal-body ul {
+      list-style: disc;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .modal-body strong { color: #e5e7eb; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+        min-height: auto;
+        padding-top: 8px;
+      }
+      .hero-timeline { margin-top: 10px; }
+      nav.site-nav { display: none; }
+      .feature-row {
+        grid-template-columns: 56px minmax(0,1fr);
+        grid-template-rows: auto auto;
+      }
+      .feature-side { grid-column: 2 / -1; }
+    }
+
+    @media (max-width: 640px) {
+      .shell { padding-inline: 12px; }
+      .section-inner { padding-inline: 12px; }
+      .ticker { display: none; }
+      .page { padding-top: 16px; }
+      .contact-fixed { right: 10px; bottom: 80px; }
+      .process-step {
+        padding-left: 0;
+        padding-top: 72px;
+      }
+      .process-step-number {
+        left: 0;
+        top: 0;
+      }
+      .branch-card { min-width: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ARKA PLAN YAZI ANİMASYONU -->
+  <div class="bg-anim">
+    <div class="bg-line">DRZ YAZILIM • YAPAY ZEKÂ • BOT • OTOMASYON</div>
+    <div class="bg-line">PROFESYONEL YAZILIM ÇÖZÜMLERİ • DRZ YAZILIM</div>
+    <div class="bg-line">WEB • MOBİL • VERİ BİLİMİ • GÖMÜLÜ • AĞ &amp; GÜVENLİK</div>
+  </div>
+
+  <!-- SPLASH -->
+  <div class="splash" id="splash">
+    <div class="splash-logo"><span>DRZ YAZILIM</span></div>
+    <div class="splash-sub">
+      Yapay zekâ destekli botlar, otomasyon sistemleri, web ve mobil uygulamalar,
+      veri bilimi ve daha fazlası için DRZ Yazılım hizmetlerine hoş geldiniz.
+    </div>
+    <div class="splash-loader"><div class="splash-loader-fill"></div></div>
+    <div class="splash-text">altyapı hazırlanıyor…</div>
+  </div>
+
+  <!-- ÜST ŞERİT -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ticker-item">DRZ YAZILIM • YAPAY ZEKÂ • BOT • OTOMASYON</div>
+      <div class="ticker-item">WEB &amp; MOBİL GELİŞTİRME • VERİ BİLİMİ • GÖMÜLÜ YAZILIM</div>
+      <div class="ticker-item">VERİTABANI • AĞ &amp; GÜVENLİK • SOSYAL MEDYA ÇÖZÜMLERİ</div>
+
+      <div class="ticker-item">DRZ YAZILIM • YAPAY ZEKÂ • BOT • OTOMASYON</div>
+      <div class="ticker-item">WEB &amp; MOBİL GELİŞTİRME • VERİ BİLİMİ • GÖMÜLÜ YAZILIM</div>
+      <div class="ticker-item">VERİTABANI • AĞ &amp; GÜVENLİK • SOSYAL MEDYA ÇÖZÜMLERİ</div>
+    </div>
+  </div>
+
+  <!-- SAĞ TELEGRAM -->
+  <div class="contact-fixed">
+    <a href="https://t.me/mroxygenx_o" target="_blank" rel="noopener" class="floating-chip">
+      <span class="icon">TG</span>
+      <div>
+        <strong>@mroxygenx_o</strong><br>
+        <small>Kurucu • Ana iletişim</small>
+      </div>
+    </a>
+    <a href="https://t.me/drzyazilim" target="_blank" rel="noopener" class="floating-chip">
+      <span class="icon">TG</span>
+      <div>
+        <strong>@drzyazilim</strong><br>
+        <small>Destek &amp; proje kaydı</small>
+      </div>
+    </a>
+  </div>
+
+  <main class="page">
+    <div class="shell">
+      <!-- HEADER -->
+      <header class="site-header">
+        <div class="brand">
+          <div class="brand-name"><span>DRZ YAZILIM</span></div>
+          <div class="brand-sub">YAPAY ZEKÂ • BOT • OTOMASYON • PROFESYONEL YAZILIM</div>
+        </div>
+        <nav class="site-nav">
+          <a data-scroll="#hero">ANASAYFA</a>
+          <a data-scroll="#about">BİZ KİMİZ?</a>
+          <a data-scroll="#services">HİZMETLER</a>
+          <a data-scroll="#branches">YAZILIM ALANLARI</a>
+          <a data-scroll="#ai">YAPAY ZEKÂ</a>
+          <a data-scroll="#social">SOSYAL MEDYA</a>
+          <a data-scroll="#process">SÜREÇ</a>
+          <a data-scroll="#contact">İLETİŞİM</a>
+        </nav>
+      </header>
+
+      <!-- HERO -->
+      <section id="hero" class="hero">
+        <div>
+          <div class="hero-kicker">YAZILIMA DAİR ARADIĞIN HER ŞEY</div>
+          <h1 class="hero-title">
+            <span>DRZ YAZILIM</span> ile
+            akıllı botlar, otomasyon ve modern yazılım projeleri tek elde toplanır.
+          </h1>
+          <p class="hero-text">
+            10 yılı aşkın sektörel tecrübeye sahip profesyonel ekibimiz; web ve mobil
+            uygulamalardan yapay zekâ destekli botlara, veri bilimi projelerinden gömülü
+            sistemlere kadar uçtan uca yazılım çözümleri üretir.
+          </p>
+          <div class="hero-actions">
+            <a href="https://t.me/mroxygenx_o" target="_blank" rel="noopener" class="btn btn-primary">
+              Telegram’dan hızlı görüş
+            </a>
+            <button class="btn btn-ghost" data-modal="modal-about">
+              DRZ Yazılım’ı tanı
+            </button>
+          </div>
+          <div class="hero-note">
+            Hazır paket satmak yerine; ihtiyacına özel tasarlanmış, uzun ömürlü ve
+            yönetilebilir yazılım altyapıları kurarız.
+          </div>
+        </div>
+
+        <aside class="hero-timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-label">2000’LERDEN BERİ</div>
+            <div class="timeline-title">Yazılımla iç içe bir ekip</div>
+            <div class="timeline-text">
+              İlk script’lerden bugünün yapay zekâ destekli sistemlerine kadar; her
+              dönemin teknolojisini yakından takip eden geliştiriciler.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-label">10+ YIL</div>
+            <div class="timeline-title">Profesyonel proje tecrübesi</div>
+            <div class="timeline-text">
+              Farklı sektörlerde onlarca proje, yüzlerce otomasyon ve uzun süreli
+              devam eden altyapılar.
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-label">BUGÜN</div>
+            <div class="timeline-title">Yazılıma dair her şey tek yerde</div>
+            <div class="timeline-text">
+              Web, mobil, bot, veri, gömülü yazılım, veritabanı, ağ &amp; güvenlik ve
+              sosyal medya çözümlerini tek çatı altında topluyoruz.
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
+
+    <!-- BİZ KİMİZ -->
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">BİZ KİMİZ?</div>
+          <div class="section-title">DRZ Yazılım hakkında</div>
+          <div class="section-text">
+            DRZ Yazılım; farklı alanlarda uzmanlaşmış geliştiricilerden, sistemcilerden
+            ve analistlerden oluşan, tamamen yazılıma odaklı bir ekiptir. Bugüne kadar
+            pek çok bireysel girişim, marka ve topluluk için görünmeyen arka planı
+            tasarladık.
+          </div>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="feature-icon">10+</div>
+            <div class="feature-main">
+              <div class="feature-main-title">10+ yıllık yazılım tecrübesi</div>
+              <div class="feature-main-text">
+                Sadece bugün çalışacak değil, uzun yıllar sorunsuz devam edecek
+                sistemler kurmaya odaklanıyoruz. Tek seferlik işler yerine, sürdürülebilir
+                altyapılar ve uzun vadeli iş birlikleri hedefliyoruz.
+              </div>
+            </div>
+            <div class="feature-side">
+              <strong>Odak:</strong> istikrarlı altyapı, anlaşılır yapı, net dokümantasyon.
+              <ul>
+                <li>Uzun vadeli proje takibi</li>
+                <li>Log ve izleme altyapısı</li>
+                <li>Büyümeye hazır mimariler</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">EKİP</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Disiplinli ve profesyonel ekip</div>
+              <div class="feature-main-text">
+                Backend, frontend, mobil, veri bilimi ve sistem yönetimi alanlarında
+                uzman çekirdek ekip ile çalışıyoruz. Her proje için doğru kişiler
+                masaya oturur.
+              </div>
+            </div>
+            <div class="feature-side">
+              <strong>Alanlar:</strong>
+              <ul>
+                <li>Web &amp; mobil geliştirme</li>
+                <li>Veri bilimi ve otomasyon</li>
+                <li>Gömülü yazılım, veritabanı, ağ &amp; güvenlik</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HİZMETLER -->
+    <section id="services">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">HİZMETLER</div>
+          <div class="section-title">DRZ Yazılım ile neler yapabiliriz?</div>
+          <div class="section-text">
+            Web’den mobile, botlardan veri bilimine kadar geniş bir yelpazede hizmet
+            veriyoruz. İhtiyacına göre tek alan ya da hepsini aynı projede
+            birleştirebiliriz.
+          </div>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="feature-icon">WEB</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Proje odaklı özel yazılım</div>
+              <div class="feature-main-text">
+                Standart paketlerin çözemediği problemler için, tamamen sana özel
+                web ve arka plan yazılımları geliştiriyoruz.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Kurumsal siteler</span>
+                <span class="tag">Yönetim panelleri</span>
+                <span class="tag">API &amp; entegrasyon</span>
+              </div>
+            </div>
+            <div class="feature-side">
+              <strong>Neleri kapsar?</strong>
+              <ul>
+                <li>Kurumsal web sitesi &amp; panel</li>
+                <li>Arka plan servisleri ve entegrasyonlar</li>
+                <li>İç kullanım için özel araçlar</li>
+              </ul>
+              <button class="btn btn-ghost btn-mini" data-modal="modal-projects">
+                DETAYLI BİLGİ
+              </button>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">OTM</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Otomasyon ve süreç iyileştirme</div>
+              <div class="feature-main-text">
+                Gün içinde tekrar tekrar yaptığın işler; zamanlanmış görevler,
+                otomasyon akışları ve botlar ile otomatik hale gelebilir.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Zamanlanmış görevler</span>
+                <span class="tag">Olay tetikleyiciler</span>
+                <span class="tag">Alarm &amp; uyarı sistemleri</span>
+              </div>
+            </div>
+            <div class="feature-side">
+              <strong>Örnek senaryolar:</strong>
+              <ul>
+                <li>Belirli saatte rapor üretme ve gönderme</li>
+                <li>Farklı kaynaklardan veri toplama</li>
+                <li>Kritik durumlarda ilgili kişileri uyarmak</li>
+              </ul>
+              <button class="btn btn-ghost btn-mini" data-modal="modal-automation">
+                DETAYLI BİLGİ
+              </button>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">DAN</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Danışmanlık ve altyapı desteği</div>
+              <div class="feature-main-text">
+                Var olan sistemi elden geçirmek, hızlandırmak veya daha güvenli hale
+                getirmek istiyorsan; analiz ve yol haritası çıkarıyoruz.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Kod &amp; mimari analizi</span>
+                <span class="tag">VDS / sunucu planlama</span>
+                <span class="tag">Veritabanı &amp; ağ tasarımı</span>
+              </div>
+            </div>
+            <div class="feature-side">
+              <strong>Çıktılar:</strong>
+              <ul>
+                <li>Mevcut durum raporu</li>
+                <li>Önerilen mimari ve yol haritası</li>
+                <li>İyileştirme öncelik listesi</li>
+              </ul>
+              <button class="btn btn-ghost btn-mini" data-modal="modal-consulting">
+                DETAYLI BİLGİ
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YAZILIM ALANLARI – ŞERİT -->
+    <section id="branches">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">YAZILIMIN DALLARI</div>
+          <div class="section-title">DRZ Yazılım’ın uzmanlık alanları</div>
+          <div class="section-text">
+            Aşağıdaki tüm alanlarda proje geliştirebilen bir ekibiz. İstersen sadece
+            bir alan, istersen hepsinin birleştiği karma projeler.
+          </div>
+        </div>
+
+        <div class="branch-strip">
+          <div class="branch-card">
+            <div class="branch-label">1</div>
+            <div class="branch-title">Web Geliştirme</div>
+            Modern, hızlı ve yönetilebilir web projeleri.
+            <ul>
+              <li>Frontend (kullanıcı arayüzü)</li>
+              <li>Backend (iş mantığı &amp; veritabanı)</li>
+              <li>API ve entegrasyon katmanı</li>
+            </ul>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-label">2</div>
+            <div class="branch-title">Mobil Uygulama Geliştirme</div>
+            iOS ve Android cihazlar için kullanıcı dostu uygulamalar.
+            <ul>
+              <li>Native / cross-platform çözümler</li>
+              <li>Push bildirim, offline çalışma</li>
+              <li>Sunucu ile çift yönlü iletişim</li>
+            </ul>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-label">3</div>
+            <div class="branch-title">Oyun Geliştirme</div>
+            Küçük prototiplerden tam oyun projelerine kadar.
+            <ul>
+              <li>Oyun mekaniği tasarımı</li>
+              <li>Çok oyunculu altyapılar</li>
+              <li>Analitik ve oyuncu davranışı takibi</li>
+            </ul>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-label">4</div>
+            <div class="branch-title">Veri Bilimi</div>
+            Büyük veriden anlamlı sonuç çıkarma.
+            <ul>
+              <li>Raporlama ve dashboard’lar</li>
+              <li>Makine öğrenimi modelleri</li>
+              <li>İş kararlarını destekleyen analizler</li>
+            </ul>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-label">5</div>
+            <div class="branch-title">Gömülü Yazılım &amp; IoT</div>
+            Donanım üzerinde çalışan yazılımlar.
+            <ul>
+              <li>Akıllı cihazlar ve otomasyon</li>
+              <li>IoT entegrasyon projeleri</li>
+              <li>Endüstriyel senaryolar</li>
+            </ul>
+          </div>
+
+          <div class="branch-card">
+            <div class="branch-label">6-7</div>
+            <div class="branch-title">Veritabanı Yönetimi &amp; Ağ &amp; Güvenlik</div>
+            Verinin güvenli ve erişilebilir tutulması.
+            <ul>
+              <li>Veritabanı tasarımı, yedekleme, optimizasyon</li>
+              <li>Ağ mimarisi, segmentasyon, güvenlik</li>
+              <li>Erişim, log ve yetkilendirme</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YAPAY ZEKÂ -->
+    <section id="ai">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">YAPAY ZEKÂ DESTEKLİ ÇÖZÜMLER</div>
+          <div class="section-title">Akıllı botlar ve otomatik asistanlar</div>
+          <div class="section-text">
+            Süreç takip botlarından metin analizi yapan sistemlere, log analizinden
+            veri odaklı karar desteğine kadar farklı alanlarda yapay zekâ kullanıyoruz.
+          </div>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="feature-icon">BOT</div>
+            <div class="feature-main">
+              <div class="feature-main-title">İş akışı ve süreç botları</div>
+              <div class="feature-main-text">
+                Belirli olayları takip eden, gerekli durumlarda bildirim atan, görev
+                açan veya rapor üreten arka plan botları.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Takvim &amp; hatırlatma</span>
+                <span class="tag">Olay bazlı aksiyon</span>
+              </div>
+            </div>
+            <div class="feature-side">
+              <ul>
+                <li>Görev atama ve takip</li>
+                <li>Kritik eşiklerde uyarı</li>
+                <li>Otomatik günlük/haftalık rapor</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">DATA</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Metin ve veri analizi</div>
+              <div class="feature-main-text">
+                Mesaj, log veya farklı veri kaynaklarını analiz ederek özet çıkaran,
+                kategorize eden veya riskli durumları işaretleyen yapılar.
+              </div>
+              <div class="tag-row">
+                <span class="tag">Özetleme</span>
+                <span class="tag">Sınıflandırma</span>
+                <span class="tag">Önceliklendirme</span>
+              </div>
+            </div>
+            <div class="feature-side">
+              <ul>
+                <li>Riskli durumların işaretlenmesi</li>
+                <li>Analitik raporlar</li>
+                <li>Trend ve yoğunluk tespiti</li>
+              </ul>
+              <button class="btn btn-ghost btn-mini" data-modal="modal-ai">
+                Yapay zekâ çözümlerini detaylı gör
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOSYAL MEDYA -->
+    <section id="social">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">SOSYAL MEDYA &amp; DİJİTAL</div>
+          <div class="section-title">Topluluk ve sosyal medya odaklı çözümler</div>
+          <div class="section-text">
+            Sosyal medya hesapları, kanallar ve topluluklar için yazılım destekli
+            çözümler üretiyoruz. Amaç; sürekli elle uğraşmak yerine, süreci yazılım
+            ile yönetebilmek.
+          </div>
+        </div>
+
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="feature-icon">SM</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Topluluk yönetim araçları</div>
+              <div class="feature-main-text">
+                Büyük grupları veya kanalları yönetirken işini kolaylaştıran
+                yardımcı paneller ve araçlar.
+              </div>
+            </div>
+            <div class="feature-side">
+              <ul>
+                <li>İçerik planlama ve hatırlatma</li>
+                <li>Moderasyon ve izleme</li>
+                <li>İstatistik ve büyüme grafikleri</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="feature-row">
+            <div class="feature-icon">AKIŞ</div>
+            <div class="feature-main">
+              <div class="feature-main-title">Otomatik içerik akışları</div>
+              <div class="feature-main-text">
+                Belirli kaynaklardan veri çekip filtreleyerek uygun formatta paylaşan
+                otomatik akışlar.
+              </div>
+            </div>
+            <div class="feature-side">
+              <ul>
+                <li>RSS / API tabanlı içerik toplama</li>
+                <li>Otomatik formatlama</li>
+                <li>Log ve hata takibi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÜREÇ -->
+    <section id="process">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">SÜREÇ</div>
+          <div class="section-title">DRZ Yazılım ile nasıl ilerliyoruz?</div>
+          <div class="section-text">
+            Başlangıçtan canlıya almaya kadar net bir yol izliyoruz. Her adımda
+            ne olacağını bilirsin; sürpriz yok, belirsizlik yok.
+          </div>
+        </div>
+
+        <div class="process-line">
+          <div class="process-step">
+            <div class="process-step-number">1</div>
+            <div class="process-step-title">Tanışma &amp; analiz</div>
+            <div class="process-step-text">
+              Kısaca ne yapmak istediğini anlatırsın. Mevcut sistemlerin, beklentin
+              ve hedeflerin üzerinden geçeriz. Teknik terim boğmacası değil,
+              anlaşılır bir tablo çıkarırız.
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number">2</div>
+            <div class="process-step-title">Yol haritası</div>
+            <div class="process-step-text">
+              Hangi alanlarda çalışacağımızı, kullanılacak teknolojileri ve tahmini
+              süreyi netleştiririz. İstersen yazılı mini doküman olarak da iletiriz.
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number">3</div>
+            <div class="process-step-title">Geliştirme</div>
+            <div class="process-step-text">
+              Kodlama, tasarım, test ve optimizasyon süreci başlar. Önemli noktalarda
+              seni bilgilendirir, gerekiyorsa önizleme ortamı açarız.
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step-number">4</div>
+            <div class="process-step-title">Canlı &amp; destek</div>
+            <div class="process-step-text">
+              Sistem canlıya alındıktan sonra belirli bir süre yakından takip eder,
+              logları ve performansı izleriz. İhtiyaç oldukça geliştirme devam eder.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- İLETİŞİM -->
+    <section id="contact">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="section-kicker">İLETİŞİM</div>
+          <div class="section-title">Projeni konuşalım</div>
+          <div class="section-text">
+            Kafanda net bir proje de olabilir, sadece “şöyle bir şey mümkün mü?”
+            diye merak ettiğin bir fikir de. Kısa bir mesaj, süreci başlatmak için yeterli.
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <p>
+            En hızlı dönüş için Telegram kullanıyoruz. Mesajında; aklındaki genel fikri,
+            varsa mevcut sistemlerini ve hedefini kısaca yazman yeterli.
+          </p>
+          <div class="pill-row">
+            <a href="https://t.me/mroxygenx_o" target="_blank" rel="noopener" class="pill">
+              Telegram – @mroxygenx_o (Ana iletişim)
+            </a>
+            <a href="https://t.me/drzyazilim" target="_blank" rel="noopener" class="pill">
+              Telegram – @drzyazilim (Destek / proje kaydı)
+            </a>
+          </div>
+          <footer>
+            <span>© <span id="year"></span> DRZ Yazılım.</span>
+            <span>Yazılıma dair her şey için profesyonel çözüm ortağın.</span>
+          </footer>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODALLAR -->
+  <div class="modal-backdrop" id="modal-about">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">DRZ Yazılım vizyonu</div>
+        <button class="modal-close" data-close="modal-about">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          <strong>DRZ Yazılım</strong>, günlük hayatta kullandığın sistemlerin arka planında
+          çalışan görünmez işçileri tasarlamayı sever. Hedefimiz; sadece çalışan değil,
+          anlaşılır, yönetilebilir ve geliştirilebilir sistemler kurmak.
+        </p>
+        <p>
+          Her projeye “bir defalık iş” gözüyle değil, uzun vadeli bir iş birliği
+          gözüyle bakıyoruz. Bu yüzden:
+        </p>
+        <ul>
+          <li>Dokümantasyon ve log yapısını baştan düşünürüz,</li>
+          <li>Geliştirilebilir ve esneyebilir mimariler kurarız,</li>
+          <li>İleride büyüme ihtimalini göz önünde bulundurarak tasarlarız.</li>
+        </ul>
+        <p>
+          Küçük bir otomasyon fikriyle başlayıp zamanla büyük bir ürüne dönüşen
+          pek çok projemiz oldu. Senin fikrin de bunlardan biri olabilir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-projects">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Proje odaklı özel yazılım</div>
+        <button class="modal-close" data-close="modal-projects">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Hazır paketlerin çözmediği problemler için; ihtiyacını dinleyip, sıfırdan
+          sana özel yazılım geliştiriyoruz. Bu bir yönetim paneli, dashboard, iç
+          otomasyon aracı veya komple ürün olabilir.
+        </p>
+        <p><strong>Tipik çıktılar:</strong></p>
+        <ul>
+          <li>Kurumsal web siteleri ve müşteri panelleri,</li>
+          <li>Arka plan servisleri ve entegrasyon API’leri,</li>
+          <li>Farklı sistemleri birbirine bağlayan köprü yazılımlar.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-automation">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Otomasyon ve süreç iyileştirme</div>
+        <button class="modal-close" data-close="modal-automation">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Her gün defalarca yaptığın ve artık “otomatik olsa da kurtulsam”
+          dediğin işler için otomasyon tasarlıyoruz. Amaç; insanın yaptığı
+          tekrarlı işleri kodla devralmak ve hatayı minimuma indirmek.
+        </p>
+        <p><strong>Örnek senaryolar:</strong></p>
+        <ul>
+          <li>Belirli saatlerde veya olaylarda tetiklenen görevler,</li>
+          <li>Farklı kaynaklardan veri toplayıp özet çıkaran servisler,</li>
+          <li>Kritik durumda kişilere bildirim gönderen alarm sistemleri.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-consulting">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Danışmanlık ve altyapı desteği</div>
+        <button class="modal-close" data-close="modal-consulting">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Var olan bir sistemin varsa ve “bir şeyler yavaş, karışık veya riskli”
+          hissediyorsan, önce röntgenini çekiyoruz. Kod, mimari, veritabanı ve
+          ağ yapısını analiz edip, nelerin iyileştirilebileceğini net şekilde
+          listeliyoruz.
+        </p>
+        <p><strong>Bu çalışmanın sonunda:</strong></p>
+        <ul>
+          <li>Mevcut durum raporu,</li>
+          <li>Önerilen yeni mimari ve teknoloji seti,</li>
+          <li>Önceliklendirilmiş aksiyon listesi elde edersin.</li>
+        </ul>
+        <p>
+          İstersen sadece rapor alıp kendi ekibinle devam edebilirsin, istersen
+          iyileştirme aşamasını da birlikte yürütürüz.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-ai">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Yapay zekâ destekli çözümler</div>
+        <button class="modal-close" data-close="modal-ai">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          DRZ Yazılım olarak yapay zekâyı; iş süreçlerini hızlandıran, veri
+          okuma yükünü azaltan ve karar almaya yardımcı olan bir araç olarak
+          kullanıyoruz.
+        </p>
+        <p><strong>Odaklandığımız bazı başlıklar:</strong></p>
+        <ul>
+          <li>Metin ve log verilerinden anlamlı özetler çıkarma,</li>
+          <li>Riskli durumları işaretleyen sınıflandırıcılar,</li>
+          <li>Yoğunluk ve trend analizi ile karar destek sistemleri.</li>
+        </ul>
+        <p>
+          Tüm çözümler, projene özel tasarlanır. Hazır bir sistemin üzerine
+          yamalama değil, altyapına uygun uçtan uca entegrasyon yaparız.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // YIL
+      var yearEl = document.getElementById("year");
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+
+      // NAV SCROLL
+      document.querySelectorAll("[data-scroll]").forEach(function (link) {
+        link.addEventListener("click", function () {
+          var target = document.querySelector(this.getAttribute("data-scroll"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // MODAL AÇ/KAPAT
+      document.querySelectorAll("[data-modal]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = this.getAttribute("data-modal");
+          var backdrop = document.getElementById(id);
+          if (backdrop) {
+            backdrop.classList.add("active");
+          }
+        });
+      });
+
+      document.querySelectorAll(".modal-close").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = this.getAttribute("data-close");
+          var backdrop = document.getElementById(id);
+          if (backdrop) {
+            backdrop.classList.remove("active");
+          }
+        });
+      });
+
+      document.querySelectorAll(".modal-backdrop").forEach(function (backdrop) {
+        backdrop.addEventListener("click", function (e) {
+          if (e.target === backdrop) {
+            backdrop.classList.remove("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
